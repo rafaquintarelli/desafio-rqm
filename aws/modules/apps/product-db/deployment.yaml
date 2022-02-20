@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-product-deployment
+spec:
+  selector:
+    matchLabels:
+      app: product-db
+  template:
+    metadata:
+      labels:
+        app: product-db
+    spec:
+      containers:
+      - name: product-db
+        image: postgres:alpine
+        ports:
+        - containerPort: 5432
+        resources: {}
+        env:
+          - name: POSTGRES_DB
+            value: product-db
+          - name: POSTGRES_USER
+            value: admin
+          - name: POSTGRES_PASSWORD
+            value: "123456"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbit-deployment
+spec:
+  selector:
+    matchLabels:
+      app: sales-rabbit
+  template:
+    metadata:
+      labels:
+        app: sales-rabbit
+    spec:
+      containers:
+      - name: sales-rabbit
+        image: rabbitmq:management-alpine
+        ports:
+        - containerPort: 5672
+        - containerPort: 25676
+        - containerPort: 15672
+        resources: {}
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            value: guest
+          - name: RABBITMQ_DEFAULT_PASS
+            value: guest

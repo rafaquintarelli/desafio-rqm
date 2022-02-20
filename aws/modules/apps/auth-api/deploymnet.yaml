@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: auth-api
+  template:
+    metadata:
+      labels:
+        app: auth-api
+    spec:
+      containers:
+      - name: auth-api
+        image: rafaquintarelli/auth-api:alpha
+        ports:
+        - containerPort: 8080
+        resources: {}
+        env:
+          - name: PORT
+            value: "8080"
+          - name: API_SECRET
+            value: YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
+          - name: DB_HOST
+            value: auth-db
+          - name: DB_NAME
+            value: auth-db
+          - name: DB_USER
+            value: admin
+          - name: DB_PASSWORD
+            value: "123456"
+          - name: DB_PORT
+            value: "5432"
+          - name: NODE_ENV
+            value: container
