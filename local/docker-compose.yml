@@ -2,21 +2,22 @@ version: "3"
 services: 
 
   sales-db:
-    image: tutum/mongodb
+    image: bitnami/mongodb
     container_name: sales-db
     restart: always
     networks:
       - sales-network
     environment:
-      - MONGODB_USER=admin
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MONGODB_EXTRA_FLAGS=--wiredTigerCacheSizeGB=2
       - MONGODB_DATABASE=sales
-      - MONGODB_PASS=123456
+      
     ports:
       - 27017:27017
       - 28017:28017
 
   auth-db:
-    image: postgres:alpine
+    image: postgres:11
     container_name: auth-db
     restart: always
     networks:
@@ -29,7 +30,7 @@ services:
       - 5432:5432
 
   sales_rabbit:
-    image: rabbitmq:management-alpine
+    image: rabbitmq:3-management
     container_name: sales_rabbit
     hostname: sales_rabbit
     networks:
@@ -43,7 +44,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
 
   product-db:
-    image: postgres:alpine
+    image: postgres:11
     container_name: product-db
     restart: always
     networks:
