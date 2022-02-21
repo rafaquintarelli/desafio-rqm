@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: auth-db
-        image: postgres:alpine
+        image: postgres:11
         ports:
         - containerPort: 5432
         resources: {}
