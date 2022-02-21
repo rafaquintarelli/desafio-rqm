@@ -1,4 +1,4 @@
-# meu-desafio
+# Meu desafio
 
 ## Pré-requisitos:
  - Docker
@@ -7,6 +7,7 @@
  - Git
 
 ## Estrutura:
+[![](https://github.com/rafaquintarelli/desafio-rqm/blob/main/conteudo/aws.jpeg?raw=true)](https://github.com/rafaquintarelli/desafio-rqm/blob/main/conteudo/aws.jpeg?raw=true)
  Para o meu desafio escolhi subir esta estrutura na AWS usando EKS, nele 3 microsserviços com 3 bancos distintos e o RabbitMQ:
   - auth-api (node)
     - auth-db (postgre)
@@ -84,18 +85,6 @@ curl --location --request GET 'localhost:8081/api/product' \
 --header 'Authorization: bearer <cole seu accessToken aqui>' \
 --data-raw ''
 ```
-
-
-Testando sales-api:
-Gerando massa de dados inicial na aplicação:
-```bash
-curl --location --request GET 'http://localhost:8082/api/initial-data' \
---header 'Content-Type: application/json'
-```
-  
-response: {"message":"Data created."}
-  
-  
   
   
 ## Subindo na AWS:
@@ -111,7 +100,7 @@ Inicie o terraform:
 Aplique a estrutura:
 `terraform apply --auto-approve`
 
-Depois de uns 20min toda a estrutura ja subiu, com as aplicações iniciadas, inclusive com o kubectl de sua maquina ja conectado ao cluster
+Depois de uns 20min toda a estrutura ja subiu, com as aplicações iniciadas, inclusive com o kubectl de sua maquina ja conectado ao cluster.
 
 Abaixo rode este comando para fazer os port-forward no kubectl para acessar os serviços pela sua maquina:
 ```bash
@@ -174,13 +163,3 @@ curl --location --request GET 'localhost:8889/api/product' \
 --header 'Authorization: bearer <cole seu accessToken aqui>' \
 --data-raw ''
 ```
-
-
-Testando sales-api:
-Gerando massa de dados inicial na aplicação:
-```bash
-curl --location --request GET 'http://localhost:8890/api/initial-data' \
---header 'Content-Type: application/json'
-```
-  
-response: {"message":"Data created."}
