@@ -120,6 +120,7 @@ kubectl port-forward service/auth-api 8888:8080 &>/dev/null &; kubectl port-forw
 
 ##Testando as aplicações:
 Testaremos da mesma forma que o sistema local, porem alterando as portas para as mapeadas acima:
+
 Gerando massa de dados inicial na aplicação:
 ```bash
 curl --location --request GET 'http://localhost:8888/api/initial-data' \
